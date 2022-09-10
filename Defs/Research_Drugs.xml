@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="MakeableDrugPillBase">
+    <defName>RburnJelly</defName>
+    <label>Rburn jelly</label>
+    <description>A red paste that overdrives research capabilities. But the cost of it is dreezing of random body parts during its action. The effect lasts 3 days. Usually fatal.</description>
+    <graphicData>
+      <texPath>Things/Item/Drug/BlueJelly</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <color>(200,100,100)</color>
+    </graphicData>
+    <rotatable>false</rotatable>
+    <statBases>
+      <WorkToMake>900</WorkToMake>
+      <MarketValue>50</MarketValue>
+      <Mass>0.005</Mass>
+    </statBases>
+    <techLevel>Neolithic</techLevel>
+    <ingestible>
+	  <drugCategory>Medical</drugCategory>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>AddSpawn_Rburn</hediffDef>
+          <severity>3.0</severity>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+	  <researchPrerequisite>JellyMakerTech</researchPrerequisite>
+      <recipeUsers>
+        <li>MantoJellyMaker</li>
+      </recipeUsers>
+	  <skillRequirements>
+        <Crafting>3</Crafting>
+      </skillRequirements>
+    </recipeMaker>
+    <costList>
+      <InsectJelly>10</InsectJelly>
+    </costList>
+	<comps>
+      <li Class="CompProperties_Drug">
+        <addictiveness>0</addictiveness>
+        <listOrder>250</listOrder>
+        <overdoseSeverityOffset>
+          <min>0.18</min>
+          <max>0.35</max>
+        </overdoseSeverityOffset>
+	  </li>
+    </comps>
+  </ThingDef>
+  
+    <ThingDef ParentName="MakeableDrugPillBase">
+    <defName>ResearchGainJelly</defName>
+    <label>Research gain jelly</label>
+    <description>A red paste that overdrives research capabilities. Privides energy for brains negating ill effects. The effect lasts 1 day.</description>
+    <graphicData>
+      <texPath>Things/Item/Drug/BlueJelly</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <color>(200,100,100)</color>
+    </graphicData>
+    <rotatable>false</rotatable>
+    <statBases>
+      <WorkToMake>900</WorkToMake>
+      <MarketValue>50</MarketValue>
+      <Mass>0.005</Mass>
+    </statBases>
+    <techLevel>Neolithic</techLevel>
+    <ingestible>
+	  <drugCategory>Medical</drugCategory>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>AddSpawn_Resgain</hediffDef>
+          <severity>1.0</severity>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+	  <researchPrerequisite>JellyMakerTech</researchPrerequisite>
+      <recipeUsers>
+        <li>MantoJellyMaker</li>
+      </recipeUsers>
+	  <skillRequirements>
+        <Crafting>3</Crafting>
+      </skillRequirements>
+    </recipeMaker>
+    <costList>
+      <Heart>2</Heart>
+    </costList>
+
+	<comps>
+      <li Class="CompProperties_Drug">
+        <addictiveness>0</addictiveness>
+        <listOrder>250</listOrder>
+        <overdoseSeverityOffset>
+          <min>0.18</min>
+          <max>0.35</max>
+        </overdoseSeverityOffset>
+	  </li>
+    </comps>
+  </ThingDef>
+  
+    <RecipeDef>
+		<defName>Create_ResearchJelly</defName>
+		<label>Create to Research Jelly</label>
+		<description>Form Research Jelly.</description>
+		<jobString>Butchering.</jobString>
+		<workAmount>250</workAmount>
+		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
+		<workSkill>Cooking</workSkill>
+		<effectWorking>ButcherFlesh</effectWorking>
+		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
+		<ingredients>
+			<li>
+				<filter>
+					<categories>
+						<li>BodyPartsNatural</li>
+					</categories>
+				</filter>
+				<count>4</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<categories>
+				<li>BodyPartsNatural</li>
+			</categories>
+		</fixedIngredientFilter>
+		<products>
+			<ResearchGainJelly>1</ResearchGainJelly>
+		</products>
+	 <recipeUsers>
+		<li>MantoJellyMaker</li>
+      </recipeUsers>
+	</RecipeDef>
+
+
+  <RecipeDef>
+		<defName>CorpsetoResearchJelly</defName>
+		<label>Corpse to Research Jelly</label>
+		<description>Condense Corpse to Research Jelly.</description>
+		<jobString>Butchering.</jobString>
+		<workAmount>250</workAmount>
+		<workSpeedStat>ButcheryFleshSpeed</workSpeedStat>
+		<workSkill>Cooking</workSkill>
+		<effectWorking>ButcherFlesh</effectWorking>
+		<soundWorking>Recipe_ButcherCorpseFlesh</soundWorking>
+		<ingredients>
+			<li>
+				<filter>
+					<categories>
+						<li>CorpsesHumanlike</li>
+					</categories>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<categories>
+				<li>CorpsesHumanlike</li>
+			</categories>
+			<specialFiltersToDisallow>
+				<li>AllowRotten</li>
+			</specialFiltersToDisallow>
+		</fixedIngredientFilter>
+		<defaultIngredientFilter>
+			<thingDefs>
+				<li>Corpse_Human</li>
+			</thingDefs>
+			<specialFiltersToAllow>
+				<li>AllowCorpsesStranger</li>
+			</specialFiltersToAllow>
+		</defaultIngredientFilter>
+		<products>
+			<ResearchGainJelly>1</ResearchGainJelly>
+		</products>
+	 <recipeUsers>
+		<li>MantoJellyMaker</li>
+      </recipeUsers>
+	</RecipeDef>
+
+
+	<HediffDef>
+		<defName>AddSpawn_Rburn</defName>
+		<label>Rburn</label>
+		<description>This pawn is currently having mantrap growing inside. Soon this pawn will be eaten and a mantrap will emerge and there's no way to prevent this from happening.</description>
+    	<hediffClass>Dangerchem.BurnResearcher.Hediff_BurnResearcher</hediffClass>
+		<defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
+		<makesSickThought>true</makesSickThought>
+		<tendable>false</tendable>
+    	<initialSeverity>3.0</initialSeverity>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-1.0</severityPerDay>
+			</li>
+		</comps>
+	</HediffDef>  
+	
+	<HediffDef>
+		<defName>AddSpawn_Resgain</defName>
+		<label>AbsorbingResearch</label>
+		<description>This pawn is currently having a surge of gaining research.</description>
+    	<hediffClass>Dangerchem.GainResearch.Hediff_GainResearch</hediffClass>
+		<defaultLabelColor>(0.35, 0.8, 0.35)</defaultLabelColor>
+		<makesSickThought>false</makesSickThought>
+		<tendable>false</tendable>
+    	<initialSeverity>1.0</initialSeverity>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>-1.0</severityPerDay>
+			</li>
+		</comps>
+	</HediffDef>  
+
+</Defs>

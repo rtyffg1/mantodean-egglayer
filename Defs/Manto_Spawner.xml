@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <!-- ====================================================== -->
+
+  <ThingDef ParentName="EggFertBase">
+    <defName>MantspawnpointM_Pre</defName>
+    <label>Mantodean spawnpre</label>
+    <description>A spawnpoint of a Mantodean.</description>
+    <graphicData>
+      <color>(150,200,100)</color>
+	  <drawSize>3</drawSize>
+    </graphicData>
+	<stackLimit>1</stackLimit>
+    <comps>
+      <li Class="AddSpawn.OwnPawnSpawnCompProperties">
+        <myExampleBool>false</myExampleBool>
+        <myExampleFloat>0.005</myExampleFloat>
+		<Pawnkind>Mantodean</Pawnkind>
+      </li>
+    </comps>
+  </ThingDef>
+    
+  <!-- ============================================================ -->
+
+  <ThingDef ParentName="EggFertBase">
+    <defName>MantspawnpointB_Pre</defName>
+    <label>Mantodean spawnpre</label>
+    <description>A spawnpoint of a Mantodean.</description>
+    <graphicData>
+      <color>(150,200,100)</color>
+	  <drawSize>3</drawSize>
+    </graphicData>
+	<stackLimit>1</stackLimit>
+    <comps>
+      <li Class="AddSpawn.OwnPawnSpawnCompProperties">
+        <myExampleBool>false</myExampleBool>
+        <myExampleFloat>0.005</myExampleFloat>
+		<Pawnkind>MantMegaspider</Pawnkind>
+      </li>
+    </comps>
+  </ThingDef>
+    
+  <!-- ============================================================ -->
+  
+	
+</Defs>

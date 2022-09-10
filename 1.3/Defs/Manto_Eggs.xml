@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<ThingDef ParentName="EggFertBase">
+    <defName>MantFarming_UEggPre</defName>
+    <label>Mantodean scarab egg</label>
+    <description>An egg that becomes a Mantodean spawner larva.</description>
+    <graphicData>
+      <color>(200,245,100)</color>
+	  <drawSize>2</drawSize>
+    </graphicData>
+	<stackLimit>1</stackLimit>
+    <statBases>
+      <MarketValue>7.0</MarketValue>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Hatcher">
+        <hatcherDaystoHatch>2</hatcherDaystoHatch>
+        <hatcherPawn>Mantscarab</hatcherPawn>
+      </li>
+      <li Class="AddSpawn.EggSpawnCompProperties">
+		<Eggdef>MantFarming_UEgg</Eggdef>
+      </li>
+    </comps>
+  </ThingDef>
+
+
+	<ThingDef ParentName="EggFertBase">
+    <defName>MantFarming_UEgg</defName>
+    <label>Mantodean scarab egg</label>
+    <description>An egg that becomes a Mantodean spawner larva.</description>
+    <graphicData>
+      <color>(200,100,100)</color>
+	  <drawSize>1.8</drawSize>
+    </graphicData>
+	<stackLimit>1</stackLimit>
+    <statBases>
+      <MarketValue>7.0</MarketValue>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Hatcher">
+        <hatcherDaystoHatch>1</hatcherDaystoHatch>
+        <hatcherPawn>Mantscarab</hatcherPawn>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <!-- ====================================================== -->
+
+  	<ThingDef ParentName="EggFertBase">
+    <defName>MantFarming_QEggPre</defName>
+    <label>Mantodean queen egg</label>
+    <description>An egg that becomes a Mantodean spawner larva.</description>
+    <graphicData>
+      <color>(200,245,100)</color>
+	  <drawSize>2</drawSize>
+    </graphicData>
+	<stackLimit>1</stackLimit>
+    <statBases>
+      <MarketValue>7.0</MarketValue>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Hatcher">
+        <hatcherDaystoHatch>2</hatcherDaystoHatch>
+        <hatcherPawn>MantSpawner</hatcherPawn>
+      </li>
+      <li Class="AddSpawn.EggSpawnCompProperties">
+		<Eggdef>MantFarming_QEgg</Eggdef>
+      </li>
+    </comps>
+  </ThingDef>
+
+
+	<ThingDef ParentName="EggFertBase">
+    <defName>MantFarming_QEgg</defName>
+    <label>Mantodean queen egg</label>
+    <description>An egg that becomes a Mantodean spawner larva.</description>
+    <graphicData>
+      <color>(200,245,100)</color>
+	  <drawSize>2</drawSize>
+    </graphicData>
+	<stackLimit>1</stackLimit>
+    <statBases>
+      <MarketValue>7.0</MarketValue>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Hatcher">
+        <hatcherDaystoHatch>2</hatcherDaystoHatch>
+        <hatcherPawn>MantSpawner</hatcherPawn>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ====================================================== -->
+
+  <ThingDef ParentName="EggFertBase">
+    <defName>MantFarming_FEggPre</defName>
+    <label>Mantodean sentient egg</label>
+    <description>An egg that becomes a Mantodean.</description>
+    <graphicData>
+      <color>(150,200,100)</color>
+	  <drawSize>3</drawSize>
+    </graphicData>
+	<stackLimit>1</stackLimit>
+    <statBases>
+      <MarketValue>7.0</MarketValue>
+    </statBases>
+    <comps>
+      <li Class="AddSpawn.EggSpawnCompProperties">
+		<Eggdef>MantFarming_FEgg</Eggdef>
+      </li>
+    </comps>
+  </ThingDef>
+  
+    <ThingDef ParentName="EggFertBase">
+    <defName>MantFarming_FEgg</defName>
+    <label>Mantodean sentient egg</label>
+    <description>An egg that becomes a Mantodean.</description>
+    <graphicData>
+      <color>(150,200,100)</color>
+	  <drawSize>3</drawSize>
+    </graphicData>
+	<stackLimit>1</stackLimit>
+    <statBases>
+      <MarketValue>7.0</MarketValue>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Hatcher">
+        <hatcherDaystoHatch>7</hatcherDaystoHatch>
+        <hatcherPawn>Mantodean</hatcherPawn>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <!-- ====================================================== -->
+
+  <ThingDef ParentName="EggFertBase">
+    <defName>MantFarming_MEggPre</defName>
+    <label>Mantodean milker egg</label>
+    <description>An egg that becomes a Mantodean.</description>
+    <graphicData>
+      <color>(150,200,100)</color>
+	  <drawSize>3</drawSize>
+    </graphicData>
+	<stackLimit>1</stackLimit>
+    <statBases>
+      <MarketValue>7.0</MarketValue>
+    </statBases>
+    <comps>
+      <li Class="AddSpawn.EggSpawnCompProperties">
+		<Eggdef>MantFarming_MEgg</Eggdef>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="EggFertBase">
+    <defName>MantFarming_MEgg</defName>
+    <label>Mantodean milker egg</label>
+    <description>An egg that becomes a Mantodean.</description>
+    <graphicData>
+      <color>(200,200,50)</color>
+	  <drawSize>2</drawSize>
+    </graphicData>
+	<stackLimit>1</stackLimit>
+    <statBases>
+      <MarketValue>7.0</MarketValue>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Hatcher">
+        <hatcherDaystoHatch>3</hatcherDaystoHatch>
+        <hatcherPawn>MantSpelopede</hatcherPawn>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <!-- ====================================================== -->
+
+  <ThingDef ParentName="EggFertBase">
+    <defName>MantFarming_BEggPre</defName>
+    <label>Mantodean blocker egg</label>
+    <description>An egg that becomes a mantodean blocker.</description>
+    <graphicData>
+      <color>(50,50,150)</color>
+	  <drawSize>3</drawSize>
+    </graphicData>
+	<stackLimit>1</stackLimit>
+    <statBases>
+      <MarketValue>7.0</MarketValue>
+    </statBases>
+    <comps>
+      <li Class="AddSpawn.EggSpawnCompProperties">
+		<Eggdef>MantFarming_BEgg</Eggdef>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="EggFertBase">
+    <defName>MantFarming_BEgg</defName>
+    <label>Mantodean blocker egg</label>
+    <description>An egg that becomes a mantodean blocker.</description>
+    <graphicData>
+      <color>(50,50,150)</color>
+	  <drawSize>2</drawSize>
+    </graphicData>
+	<stackLimit>1</stackLimit>
+    <statBases>
+      <MarketValue>7.0</MarketValue>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Hatcher">
+        <hatcherDaystoHatch>3</hatcherDaystoHatch>
+        <hatcherPawn>MantMegaspider</hatcherPawn>
+      </li>
+    </comps>
+  </ThingDef>
+  
+    
+  <!-- ============================================================ -->
+
+  
+	
+</Defs>

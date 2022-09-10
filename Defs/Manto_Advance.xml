@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="MakeableDrugPillBase">
+    <defName>MantoAdvance</defName>
+    <label>Manto Advance</label>
+    <description>MantoAdvance</description>
+    <graphicData>
+      <texPath>Things/Item/Drug/BlueJelly</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <color>(50,200,50)</color>
+    </graphicData>
+    <rotatable>false</rotatable>
+    <statBases>
+      <WorkToMake>900</WorkToMake>
+      <MarketValue>50</MarketValue>
+      <Mass>0.005</Mass>
+    </statBases>
+    <techLevel>Neolithic</techLevel>
+    <ingestible>
+	  <drugCategory>Medical</drugCategory>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>Hediff_MantoAdvance</hediffDef>
+          <severity>0.01</severity>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+	  <researchPrerequisite>JellyMakerTech</researchPrerequisite>
+      <recipeUsers>
+        <li>MantoJellyMaker</li>
+      </recipeUsers>
+	  <skillRequirements>
+        <Crafting>3</Crafting>
+      </skillRequirements>
+    </recipeMaker>
+    <costList>
+      <InsectJelly>100</InsectJelly>
+    </costList>
+	<comps>
+      <li Class="CompProperties_Drug">
+        <addictiveness>0</addictiveness>
+        <listOrder>250</listOrder>
+	  </li>
+    </comps>
+  </ThingDef>
+
+	<HediffDef>
+		<defName>Hediff_MantoAdvance</defName>
+		<label>MantoAdvance</label>
+		<description>This pawn is currently undergoing mutations by mantodean "advancer". Mantoblockers shall advance to full mantodean, others shall devolve into mantspellopede. Smaller beings (less than size 0.4) won't survive transformation.</description>
+    	<hediffClass>Dangerchem.PawnReplace.Hediff_PawnReplace</hediffClass>
+		<defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
+		<makesSickThought>true</makesSickThought>
+		<tendable>False</tendable>
+    	<initialSeverity>0.1</initialSeverity>
+		<comps>
+			<li Class="HediffCompProperties_SeverityPerDay">
+				<severityPerDay>10.0</severityPerDay>
+			</li>
+		</comps>
+		<modExtensions>
+			<li Class="Dangerchem.PawnReplace.DefModExt_PawnReplace">
+				<defaultPawnKind>Mantodean</defaultPawnKind>
+				<animalPawnKind>MantSpelopede</animalPawnKind>
+				<requiredinputDefs>
+					<li>MantMegaspider</li>
+				</requiredinputDefs>
+
+				<requiredsize>0.4</requiredsize>
+				<killiflowmass>True</killiflowmass>
+				<animalifwrongrace>True</animalifwrongrace>
+				<killifwrongrace>False</killifwrongrace>
+				<killPawn>False</killPawn>
+                <forceDropEquipment>True</forceDropEquipment>
+			</li>
+		</modExtensions>
+	</HediffDef>
+
+
+</Defs>

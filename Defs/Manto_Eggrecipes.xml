@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<RecipeDef>
+      <defName>CreateMantoqueenegg</defName>
+      <label>Create Mantodean queen egg</label>
+      <description>Create an egg of Mantodean queen/drone</description>
+      <jobString>Making Mantodean Spawner egg</jobString>  
+      <allowMixingIngredients>false</allowMixingIngredients>
+	  <skillRequirements>
+		<Crafting>4</Crafting>
+      </skillRequirements>
+      <ingredients>
+		<li>
+			<filter>
+				<thingDefs>
+					<li>InsectJelly</li>
+				</thingDefs>
+			</filter>
+			<count>200</count>
+		</li>
+	  </ingredients>
+      <products>
+         <MantFarming_QEggPre>1</MantFarming_QEggPre>
+      </products>
+      <workAmount>1000</workAmount>
+      <workSkill>Crafting</workSkill>
+    <effectWorking>Repair</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <workSpeedStat>ButcheryMechanoidSpeed</workSpeedStat>
+	<recipeUsers>
+		<li>MantoJellyMaker</li>
+		<li>ArtSpot</li>
+     </recipeUsers>
+	</RecipeDef>
+	
+	  <!-- ============================================================ -->
+	
+	<RecipeDef>
+      <defName>FormMantoegg</defName>
+      <label>Form Mantodean egg from basic manto egg</label>
+      <description>Create an egg of sentient Mantodean</description>
+      <jobString>Forming Mantodean egg</jobString>  
+      <allowMixingIngredients>false</allowMixingIngredients>
+	  <skillRequirements>
+		<Crafting>4</Crafting>
+      </skillRequirements>
+      <ingredients>
+		<li>
+			<filter>
+				<thingDefs>
+					<li>MantFarming_UEgg</li>
+				</thingDefs>
+			</filter>
+			<count>1</count>
+		</li>
+		<li>
+			<filter>
+				<thingDefs>
+					<li>InsectJelly</li>
+				</thingDefs>
+			</filter>
+			<count>100</count>
+		</li>
+	  </ingredients>
+      <products>
+         <MantFarming_FEggPre>1</MantFarming_FEggPre>
+      </products>
+      <workAmount>1000</workAmount>
+      <workSkill>Crafting</workSkill>
+    <effectWorking>Repair</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <workSpeedStat>ButcheryMechanoidSpeed</workSpeedStat>
+	 <recipeUsers>
+		<li>MantoJellyMaker</li>
+		<li>ArtSpot</li>
+      </recipeUsers>
+	</RecipeDef>
+	
+  <!-- ============================================================ -->
+	
+	<RecipeDef>
+      <defName>FormMantoMegg</defName>
+      <label>Form Milker egg from basic manto egg</label>
+      <description>Create an egg of Mantodean herbmuncher</description>
+      <jobString>Forming Mantodean egg</jobString>  
+      <allowMixingIngredients>false</allowMixingIngredients>
+	  <skillRequirements>
+		<Crafting>4</Crafting>
+      </skillRequirements>
+      <ingredients>
+		<li>
+			<filter>
+				<thingDefs>
+					<li>MantFarming_UEgg</li>
+				</thingDefs>
+			</filter>
+			<count>1</count>
+		</li>
+		<li>
+			<filter>
+				<thingDefs>
+					<li>InsectJelly</li>
+				</thingDefs>
+			</filter>
+			<count>50</count>
+		</li>
+	  </ingredients>
+      <products>
+         <MantFarming_MEggPre>1</MantFarming_MEggPre>
+      </products>
+      <workAmount>1000</workAmount>
+      <workSkill>Crafting</workSkill>
+    <effectWorking>Repair</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <workSpeedStat>ButcheryMechanoidSpeed</workSpeedStat>
+	 <recipeUsers>
+		<li>MantoJellyMaker</li>
+		<li>ArtSpot</li>
+      </recipeUsers>
+	</RecipeDef>
+
+	<!-- ============================================================ -->
+	
+	<RecipeDef>
+      <defName>FormMantoBegg</defName>
+      <label>Form Blocker egg from basic manto egg</label>
+      <description>Create an egg of Mantodean warblocker</description>
+      <jobString>Forming Mantodean egg</jobString>  
+      <allowMixingIngredients>false</allowMixingIngredients>
+	  <skillRequirements>
+		<Crafting>4</Crafting>
+      </skillRequirements>
+      <ingredients>
+		<li>
+			<filter>
+				<thingDefs>
+					<li>MantFarming_UEgg</li>
+				</thingDefs>
+			</filter>
+			<count>1</count>
+		</li>
+		<li>
+			<filter>
+				<thingDefs>
+					<li>InsectJelly</li>
+				</thingDefs>
+			</filter>
+			<count>100</count>
+		</li>
+	  </ingredients>
+      <products>
+         <MantFarming_BEggPre>1</MantFarming_BEggPre>
+      </products>
+      <workAmount>1000</workAmount>
+      <workSkill>Crafting</workSkill>
+    <effectWorking>Repair</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <workSpeedStat>ButcheryMechanoidSpeed</workSpeedStat>
+	 <recipeUsers>
+		<li>MantoJellyMaker</li>
+		<li>ArtSpot</li>
+      </recipeUsers>
+	</RecipeDef>
+	
+</Defs>
