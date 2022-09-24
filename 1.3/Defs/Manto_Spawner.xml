@@ -14,9 +14,14 @@
 	<stackLimit>1</stackLimit>
     <comps>
       <li Class="AddSpawn.OwnPawnSpawnCompProperties">
-        <myExampleBool>false</myExampleBool>
-        <myExampleFloat>0.005</myExampleFloat>
+        <StartingAge>18</StartingAge>
 		<Pawnkind>Mantodean</Pawnkind>
+		<StartingHediffs>
+		  <li>MutatedMarrowHeavy</li>
+		</StartingHediffs>
+		<HediffTargets>
+		  <li>Spine</li>
+		</HediffTargets>
       </li>
     </comps>
   </ThingDef>
@@ -34,9 +39,11 @@
 	<stackLimit>1</stackLimit>
     <comps>
       <li Class="AddSpawn.OwnPawnSpawnCompProperties">
-        <myExampleBool>false</myExampleBool>
-        <myExampleFloat>0.005</myExampleFloat>
+        <StartingAge>1</StartingAge>
 		<Pawnkind>MantMegaspider</Pawnkind>
+		<StartingHediffs>
+		  <li>MutatedMarrowHeavy</li>
+		</StartingHediffs>
       </li>
     </comps>
   </ThingDef>

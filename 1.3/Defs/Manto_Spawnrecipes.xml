@@ -40,6 +40,7 @@
     <workSpeedStat>ButcheryMechanoidSpeed</workSpeedStat>
 	 <recipeUsers>
 		<li>MantoJellyMaker</li>
+		<li>ArtSpot</li>
       </recipeUsers>
 	</RecipeDef>
 	
@@ -82,6 +83,7 @@
     <workSpeedStat>ButcheryMechanoidSpeed</workSpeedStat>
 	 <recipeUsers>
 		<li>MantoJellyMaker</li>
+		<li>ArtSpot</li>
       </recipeUsers>
 	</RecipeDef>
 	

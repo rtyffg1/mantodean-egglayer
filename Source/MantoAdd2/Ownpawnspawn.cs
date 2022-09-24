@@ -10,12 +10,18 @@ namespace AddSpawn
 {
     public class OwnPawnSpawnComp : ThingComp
     {
+        public bool didspawn = false;
         public override void CompTick()
         {
             if (parent.Map != null)
             {
-                this.SpawnDude();
-                this.parent.Destroy();
+                if (!didspawn)
+                {
+                    didspawn = true;
+                    this.SpawnDude();
+                }
+                else
+                    this.parent.Destroy();
             }
         }
 
@@ -31,32 +37,77 @@ namespace AddSpawn
 
         public void SpawnDude()
         {
-            Verse.PawnGenerationRequest request = new Verse.PawnGenerationRequest(this.Props.Pawnkind, Faction.OfPlayer, PawnGenerationContext.NonPlayer);
+            Verse.PawnGenerationRequest request = new Verse.PawnGenerationRequest(this.Props.Pawnkind, Faction.OfPlayer, PawnGenerationContext.NonPlayer, fixedBiologicalAge : Props.StartingAge, fixedChronologicalAge : Props.StartingAge);
             Pawn pawn = PawnGenerator.GeneratePawn(request);
             if (!pawn.RaceProps.Humanlike)
             {
                 if (!pawn.training.HasLearned(DefDatabase<TrainableDef>.GetNamed("Obedience")) && pawn.training.CanBeTrained(DefDatabase<TrainableDef>.GetNamed("Obedience")))
-                    pawn.training.Train(DefDatabase<TrainableDef>.GetNamed("Obedience"), pawn, true);
+                    pawn.training.Train(DefDatabase<TrainableDef>.GetNamed("Obedience"), null, true);
                 if (!pawn.training.HasLearned(DefDatabase<TrainableDef>.GetNamed("Release")) && pawn.training.CanBeTrained(DefDatabase<TrainableDef>.GetNamed("Release")))
-                    pawn.training.Train(DefDatabase<TrainableDef>.GetNamed("Release"), pawn, true);
+                    pawn.training.Train(DefDatabase<TrainableDef>.GetNamed("Release"), null, true);
+//                pawn.training.pawn = null;
 /*                if (!pawn.training.HasLearned(DefDatabase<TrainableDef>.GetNamed("KillingTraining")) && pawn.training.CanBeTrained(DefDatabase<TrainableDef>.GetNamed("KillingTraining")))
                     pawn.training.Train(DefDatabase<TrainableDef>.GetNamed("KillingTraining"), pawn, true);*/
             }
 
-            if (this.Props.HediffDef != null)
-                pawn.health.AddHediff(this.Props.HediffDef);
-
             GenSpawn.Spawn(pawn, parent.Position, parent.Map);
+
+//            Log.Error("starting hediffs");
+            for (int i = 0; i < Props.StartingHediffs.Count; i++)
+            {
+//                Log.Error("hediff" + Props.StartingHediffs[i]);
+                BodyPartRecord CurrentTarget = null;
+                if (Props.HediffTargets != null)
+                    if (Props.HediffTargets.Count > i)
+                    {
+                        //                    CurrentTarget = Props.HediffTargets[i];
+//                        Log.Error(pawn.RaceProps.body.GetPartAtIndex(0).ToStringSafe());
+//                        Log.Error(pawn.RaceProps.body.GetPartAtIndex(1).ToStringSafe());
+                        CurrentTarget = pawn.RaceProps.body.GetPartsWithDef(Props.HediffTargets[i]).First();
+//                        Log.Error(CurrentTarget.ToStringSafe());
+                    }
+                if (Props.StartingHediffs[i] != null)
+                {
+//                    Log.Error(Props.StartingHediffs[i].ToStringSafe());
+                    if (CurrentTarget == null)
+                    {
+//                        Log.Error("general hediff" + Props.StartingHediffs[i]);
+                        CurrentTarget = pawn.RaceProps.body.GetPartAtIndex(0);
+                        pawn.health.AddHediff(Props.StartingHediffs[i], CurrentTarget);
+                    }
+                    else
+                    {
+//                        Log.Error("local hediff" + Props.StartingHediffs[i]);
+                        pawn.health.AddHediff(Props.StartingHediffs[i], CurrentTarget);
+                    }
+                }
+            }
+//            Props.StartingHediffs.ForEach(delegate (HediffDef StartingHediff)
+//            {
+
+            //                Console.WriteLine(name);
+            //            });
+            //            {
+
+            //            }
+            //            if (this.Props.HediffDef != null)
+            //                pawn.health.AddHediff(this.Props.HediffDef);
+
         }
     }
 
     public class OwnPawnSpawnCompProperties : CompProperties
     {
         public bool myExampleBool;
-        public float myExampleFloat;
+        public float StartingAge;
         public PawnKindDef Pawnkind;
-        public HediffDef HediffDef;
+        public List<HediffDef> StartingHediffs = null;
+        public List<BodyPartDef> HediffTargets = null;
+
+//        public HediffDef StartingHediff;
         public float ExFloat;
+
+        //todo struct for starting hediffs
 
         /// <summary>
         /// These constructors aren't strictly required if the compClass is set in the XML.
