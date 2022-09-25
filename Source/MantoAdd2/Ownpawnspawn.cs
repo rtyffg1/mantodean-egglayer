@@ -99,7 +99,7 @@ namespace AddSpawn
     public class OwnPawnSpawnCompProperties : CompProperties
     {
         public bool myExampleBool;
-        public float StartingAge;
+        public float StartingAge = 1;
         public PawnKindDef Pawnkind;
         public List<HediffDef> StartingHediffs = null;
         public List<BodyPartDef> HediffTargets = null;
