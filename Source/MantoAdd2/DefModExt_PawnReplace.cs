@@ -21,6 +21,13 @@ namespace Dangerchem.PawnReplace
 
         public float requiredsize = 0.7f;
 
+        public bool isfixedgender = false;
+        public Gender fixedgender = Gender.None;
+        public float StartingAge = 0.5f;
+        public List<HediffDef> StartingHediffs = null;
+        public List<BodyPartDef> HediffTargets = null;
+        public string backstory = null;
+
         public bool forceDropEquipment;
         public bool killiflowmass = false;
         public bool animalifwrongrace = false;

@@ -18,7 +18,10 @@ namespace Dangerchem.PawnReplace
 
             if(Severity >= 1.0)
             {
-                DoBasicConvert();
+                if (pawn.Map != null)
+                {
+                    DoBasicConvert();
+                }
             }
         }
 
@@ -39,19 +42,27 @@ namespace Dangerchem.PawnReplace
             DefModExt_PawnReplace modExt = def.GetModExtension<DefModExt_PawnReplace>();
             bool killpawn = false;
             bool shouldconvert = true;
-            Verse.PawnGenerationRequest request = new Verse.PawnGenerationRequest(
-                modExt.defaultPawnKind,
-                faction: Faction.OfPlayer,
-                forceGenerateNewPawn: true,
-                canGeneratePawnRelations: false,
-                colonistRelationChanceFactor: 0f,
-                //                fixedBiologicalAge: pawn.ageTracker.AgeBiologicalYearsFloat,
-                //                fixedChronologicalAge: pawn.ageTracker.AgeChronologicalYearsFloat,
-                fixedBiologicalAge: pawn.ageTracker.AdultMinAge,
-                fixedChronologicalAge: pawn.ageTracker.AdultMinAge,
-                allowFood: false,
-                allowAddictions: false);
-            request.FixedGender = pawn.gender;
+            Verse.PawnGenerationRequest request = new Verse.PawnGenerationRequest(modExt.defaultPawnKind,
+                Faction.OfPlayer, PawnGenerationContext.NonPlayer,
+                fixedBiologicalAge: modExt.StartingAge, fixedChronologicalAge: modExt.StartingAge);
+            /*            Verse.PawnGenerationRequest request = new Verse.PawnGenerationRequest(
+                            modExt.defaultPawnKind,
+                            faction: Faction.OfPlayer,
+                            context: PawnGenerationContext.NonPlayer,
+                            forceGenerateNewPawn: true,
+                            canGeneratePawnRelations: false,
+                            colonistRelationChanceFactor: 0f,
+                            fixedBiologicalAge: modExt.StartingAge,
+                            fixedChronologicalAge: modExt.StartingAge,
+            //                allowFood: false,
+                            allowAddictions: false);*/
+            request.CanGeneratePawnRelations = false;
+            request.ColonistRelationChanceFactor = 0f;
+            request.AllowAddictions = false;
+            if (modExt.isfixedgender)
+            {
+                request.FixedGender = modExt.fixedgender;
+            }
 
             if (!IsViableRace(pawn, modExt))
             {
@@ -78,17 +89,72 @@ namespace Dangerchem.PawnReplace
                         shouldconvert = false;
                     }
                 }
+                //                if (pawn.needs.food.CurLevel < 0.5);
+
                 //checking if pawn is animal and if there is an animal conversion
                 if (!pawn.RaceProps.Humanlike && modExt.animalPawnKind != null)
+                {
                     request.KindDef = modExt.animalPawnKind;
+                    request.FixedBiologicalAge = pawn.ageTracker.AdultMinAge;
+                    request.FixedChronologicalAge = pawn.ageTracker.AdultMinAge;
+
+                }
             }
 
             if (shouldconvert)
             {
                 Pawn convertedPawn = PawnGenerator.GeneratePawn(request);
-                GenPlace.TryPlaceThing(convertedPawn, pawn.Position, pawn.Map, ThingPlaceMode.Direct);
+                if (convertedPawn.RaceProps.Humanlike)
+                {
+                    if (modExt.backstory != null)
+                    {
+                        Backstory tstory;
+                        string tstoryname = BackstoryDatabase.GetIdentifierClosestMatch(modExt.backstory);
+                        BackstoryDatabase.TryGetWithIdentifier(tstoryname, out tstory);
+                        convertedPawn.story.adulthood = tstory;// BackstoryDatabase.RandomBackstory(BackstorySlot.Adulthood);
+
+                    }
+                }
+                else
+                {
+                    if (!convertedPawn.training.HasLearned(DefDatabase<TrainableDef>.GetNamed("Obedience")) && convertedPawn.training.CanBeTrained(DefDatabase<TrainableDef>.GetNamed("Obedience")))
+                        convertedPawn.training.Train(DefDatabase<TrainableDef>.GetNamed("Obedience"), null, true);
+                    if (!convertedPawn.training.HasLearned(DefDatabase<TrainableDef>.GetNamed("Release")) && convertedPawn.training.CanBeTrained(DefDatabase<TrainableDef>.GetNamed("Release")))
+                        convertedPawn.training.Train(DefDatabase<TrainableDef>.GetNamed("Release"), null, true);
+                    //                pawn.training.pawn = null;
+                    /*                if (!pawn.training.HasLearned(DefDatabase<TrainableDef>.GetNamed("KillingTraining")) && pawn.training.CanBeTrained(DefDatabase<TrainableDef>.GetNamed("KillingTraining")))
+                                        pawn.training.Train(DefDatabase<TrainableDef>.GetNamed("KillingTraining"), pawn, true);*/
+                }
+
+
+                //                GenPlace.TryPlaceThing(convertedPawn, pawn.Position, pawn.Map, ThingPlaceMode.Direct);
+                GenSpawn.Spawn(convertedPawn, pawn.Position, pawn.Map);
+
                 if (modExt.killPawn)
                     killpawn = true;
+//                Log.Error("starting hediffs");
+                for (int i = 0; i < modExt.StartingHediffs.Count; i++)
+                {
+//                    Log.Error("hediff" + modExt.StartingHediffs[i]);
+                    BodyPartRecord CurrentTarget = null;
+                    if (modExt.HediffTargets != null)
+                        if (modExt.HediffTargets.Count > i)
+                        {
+                            CurrentTarget = convertedPawn.RaceProps.body.GetPartsWithDef(modExt.HediffTargets[i]).First();
+                        }
+                    if (modExt.StartingHediffs[i] != null)
+                    {
+                        if (CurrentTarget == null)
+                        {
+                            CurrentTarget = convertedPawn.RaceProps.body.GetPartAtIndex(0);
+                            convertedPawn.health.AddHediff(modExt.StartingHediffs[i], CurrentTarget);
+                        }
+                        else
+                        {
+                            convertedPawn.health.AddHediff(modExt.StartingHediffs[i], CurrentTarget);
+                        }
+                    }
+                }
             }
             if (modExt.forceDropEquipment)
             {

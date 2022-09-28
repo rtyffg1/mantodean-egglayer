@@ -38,6 +38,10 @@ namespace AddSpawn
         public void SpawnDude()
         {
             Verse.PawnGenerationRequest request = new Verse.PawnGenerationRequest(this.Props.Pawnkind, Faction.OfPlayer, PawnGenerationContext.NonPlayer, fixedBiologicalAge : Props.StartingAge, fixedChronologicalAge : Props.StartingAge);
+            if (Props.isfixedgender)
+            {
+                request.FixedGender = Props.fixedgender;
+            }
             Pawn pawn = PawnGenerator.GeneratePawn(request);
             if (!pawn.RaceProps.Humanlike)
             {
@@ -48,6 +52,18 @@ namespace AddSpawn
 //                pawn.training.pawn = null;
 /*                if (!pawn.training.HasLearned(DefDatabase<TrainableDef>.GetNamed("KillingTraining")) && pawn.training.CanBeTrained(DefDatabase<TrainableDef>.GetNamed("KillingTraining")))
                     pawn.training.Train(DefDatabase<TrainableDef>.GetNamed("KillingTraining"), pawn, true);*/
+            }
+            else
+            {
+                if (Props.backstory != null)
+                {
+                    Backstory tstory;
+                    string tstoryname = BackstoryDatabase.GetIdentifierClosestMatch(Props.backstory);
+//                    Log.Error("tstoryname  " + tstoryname.ToStringSafe());
+                    BackstoryDatabase.TryGetWithIdentifier(tstoryname, out tstory);
+//                    Log.Error("tstory " + tstory.ToStringSafe());
+                    pawn.story.adulthood = tstory;// BackstoryDatabase.RandomBackstory(BackstorySlot.Adulthood);
+                }
             }
 
             GenSpawn.Spawn(pawn, parent.Position, parent.Map);
@@ -82,16 +98,6 @@ namespace AddSpawn
                     }
                 }
             }
-//            Props.StartingHediffs.ForEach(delegate (HediffDef StartingHediff)
-//            {
-
-            //                Console.WriteLine(name);
-            //            });
-            //            {
-
-            //            }
-            //            if (this.Props.HediffDef != null)
-            //                pawn.health.AddHediff(this.Props.HediffDef);
 
         }
     }
@@ -99,12 +105,16 @@ namespace AddSpawn
     public class OwnPawnSpawnCompProperties : CompProperties
     {
         public bool myExampleBool;
+
+        public bool isfixedgender = false;
+        public Gender fixedgender = Gender.None;
         public float StartingAge = 0.5f;
         public PawnKindDef Pawnkind;
         public List<HediffDef> StartingHediffs = null;
         public List<BodyPartDef> HediffTargets = null;
+        public string backstory = null;
 
-//        public HediffDef StartingHediff;
+        //        public HediffDef StartingHediff;
         public float ExFloat;
 
         //todo struct for starting hediffs

@@ -54,7 +54,7 @@
 		<defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
 		<makesSickThought>true</makesSickThought>
 		<tendable>False</tendable>
-    	<initialSeverity>0.1</initialSeverity>
+    	<initialSeverity>0.9</initialSeverity>
 		<comps>
 			<li Class="HediffCompProperties_SeverityPerDay">
 				<severityPerDay>10.0</severityPerDay>
@@ -67,6 +67,13 @@
 				<requiredinputDefs>
 					<li>MantMegaspider</li>
 				</requiredinputDefs>
+				
+				<StartingAge>29</StartingAge>
+				<isfixedgender>true</isfixedgender>
+				<fixedgender>None</fixedgender>
+				<StartingHediffs>
+					<li>MutatedMarrowHeavy</li>
+				</StartingHediffs>
 
 				<requiredsize>0.4</requiredsize>
 				<killiflowmass>True</killiflowmass>

@@ -14,8 +14,11 @@
 	<stackLimit>1</stackLimit>
     <comps>
       <li Class="AddSpawn.OwnPawnSpawnCompProperties">
-        <StartingAge>18</StartingAge>
+        <StartingAge>27</StartingAge>
 		<Pawnkind>Mantodean</Pawnkind>
+		<isfixedgender>true</isfixedgender>
+		<fixedgender>Male</fixedgender>
+		<backstory>MantodeanWarrior</backstory>
 		<StartingHediffs>
 		  <li>MutatedMarrowHeavy</li>
 		</StartingHediffs>
@@ -39,8 +42,9 @@
 	<stackLimit>1</stackLimit>
     <comps>
       <li Class="AddSpawn.OwnPawnSpawnCompProperties">
-        <StartingAge>1</StartingAge>
 		<Pawnkind>MantMegaspider</Pawnkind>
+		<isfixedgender>true</isfixedgender>
+		<fixedgender>None</fixedgender>
 		<StartingHediffs>
 		  <li>MutatedMarrowHeavy</li>
 		</StartingHediffs>
