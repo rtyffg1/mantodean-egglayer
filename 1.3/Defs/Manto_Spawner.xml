@@ -20,10 +20,13 @@
 		<fixedgender>Male</fixedgender>
 		<backstory>MantodeanWarrior</backstory>
 		<StartingHediffs>
-		  <li>MutatedMarrowHeavy</li>
+		  <li>MutatedMarrowLight</li>
+		  <li>MutatedMarrowLight</li>
 		</StartingHediffs>
 		<HediffTargets>
 		  <li>Spine</li>
+		  <li>Ribcage</li>
+		  <li>Torso</li>
 		</HediffTargets>
       </li>
     </comps>
@@ -46,7 +49,7 @@
 		<isfixedgender>true</isfixedgender>
 		<fixedgender>None</fixedgender>
 		<StartingHediffs>
-		  <li>MutatedMarrowHeavy</li>
+		  <li>MutatedMarrowLight</li>
 		</StartingHediffs>
       </li>
     </comps>

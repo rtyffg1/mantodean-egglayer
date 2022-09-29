@@ -68,11 +68,11 @@
 					<li>MantMegaspider</li>
 				</requiredinputDefs>
 				
-				<StartingAge>29</StartingAge>
+				<StartingAge>19</StartingAge>
 				<isfixedgender>true</isfixedgender>
 				<fixedgender>None</fixedgender>
 				<StartingHediffs>
-					<li>MutatedMarrowHeavy</li>
+					<li>MutatedMarrowLight</li>
 				</StartingHediffs>
 
 				<requiredsize>0.4</requiredsize>
