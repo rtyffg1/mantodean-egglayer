@@ -57,12 +57,12 @@ namespace AddSpawn
             {
                 if (Props.backstory != null)
                 {
-                    Backstory tstory;
-                    string tstoryname = BackstoryDatabase.GetIdentifierClosestMatch(Props.backstory);
+//                    BackstoryDef tstory;
+//                    string tstoryname = BackstoryDatabase.GetIdentifierClosestMatch(Props.backstory);
 //                    Log.Error("tstoryname  " + tstoryname.ToStringSafe());
-                    BackstoryDatabase.TryGetWithIdentifier(tstoryname, out tstory);
+//                    BackstoryDatabase.TryGetWithIdentifier(tstoryname, out tstory);
 //                    Log.Error("tstory " + tstory.ToStringSafe());
-                    pawn.story.adulthood = tstory;// BackstoryDatabase.RandomBackstory(BackstorySlot.Adulthood);
+//                    pawn.story.Adulthood = tstory;// BackstoryDatabase.RandomBackstory(BackstorySlot.Adulthood);
                 }
             }
 

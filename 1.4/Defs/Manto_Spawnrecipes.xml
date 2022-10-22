@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<!-- ============================================================ -->
+	
+	<RecipeDef>
+      <defName>HasteMantoMegg</defName>
+      <label>Hasten Mantodean egg hatch</label>
+      <description>Hasten Mantodean egg hatch</description>
+      <jobString>Hasting Mantodean egg</jobString>  
+      <allowMixingIngredients>false</allowMixingIngredients>
+	  <skillRequirements>
+		<Crafting>4</Crafting>
+      </skillRequirements>
+      <ingredients>
+		<li>
+			<filter>
+				<thingDefs>
+					<li>MantFarming_UEgg</li>
+				</thingDefs>
+			</filter>
+			<count>1</count>
+		</li>
+		<li>
+			<filter>
+				<thingDefs>
+					<li>InsectJellyManto</li>
+				</thingDefs>
+			</filter>
+			<count>1000</count>
+		</li>
+	  </ingredients>
+      <products>
+         <MantspawnpointM_Pre>1</MantspawnpointM_Pre>
+      </products>
+      <workAmount>1000</workAmount>
+      <workSkill>Crafting</workSkill>
+    <effectWorking>Repair</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <workSpeedStat>ButcheryMechanoidSpeed</workSpeedStat>
+	 <recipeUsers>
+		<li>MantoJellyMaker</li>
+		<li>ArtSpot</li>
+      </recipeUsers>
+	</RecipeDef>
+	
+	<!-- ============================================================ -->
+	
+	<RecipeDef>
+      <defName>HasteMantoBegg</defName>
+      <label>Hasten Mantodean Begg hatch</label>
+      <description>Hasten Mantodean warblocker egg hatch</description>
+      <jobString>Hasting Mantodean warblocker egg</jobString>  
+      <allowMixingIngredients>false</allowMixingIngredients>
+	  <skillRequirements>
+		<Crafting>4</Crafting>
+      </skillRequirements>
+      <ingredients>
+		<li>
+			<filter>
+				<thingDefs>
+					<li>MantFarming_UEgg</li>
+				</thingDefs>
+			</filter>
+			<count>1</count>
+		</li>
+		<li>
+			<filter>
+				<thingDefs>
+					<li>InsectJellyManto</li>
+				</thingDefs>
+			</filter>
+			<count>300</count>
+		</li>
+	  </ingredients>
+      <products>
+         <MantspawnpointB_Pre>1</MantspawnpointB_Pre>
+      </products>
+      <workAmount>1000</workAmount>
+      <workSkill>Crafting</workSkill>
+    <effectWorking>Repair</effectWorking>
+    <soundWorking>Recipe_CookMeal</soundWorking>
+    <workSpeedStat>ButcheryMechanoidSpeed</workSpeedStat>
+	 <recipeUsers>
+		<li>MantoJellyMaker</li>
+		<li>ArtSpot</li>
+      </recipeUsers>
+	</RecipeDef>
+	
+</Defs>

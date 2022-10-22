@@ -42,9 +42,12 @@ namespace Dangerchem.PawnReplace
             DefModExt_PawnReplace modExt = def.GetModExtension<DefModExt_PawnReplace>();
             bool killpawn = false;
             bool shouldconvert = true;
+            Pawn convertedPawn;
             Verse.PawnGenerationRequest request = new Verse.PawnGenerationRequest(modExt.defaultPawnKind,
                 Faction.OfPlayer, PawnGenerationContext.NonPlayer,
                 fixedBiologicalAge: modExt.StartingAge, fixedChronologicalAge: modExt.StartingAge);
+//            PawnGenerationRequest request = new PawnGenerationRequest(modExt.defaultPawnKind, Faction.OfPlayer, PawnGenerationContext.NonPlayer, -1, false, true, false, false, true, false, 1f, false, true, true, false, false, false, false, false, 0f, 0f, null, 0f, null, null, null, null, null, modExt.StartingAge, modExt.StartingAge, null, null, null, null, null, null);
+
             /*            Verse.PawnGenerationRequest request = new Verse.PawnGenerationRequest(
                             modExt.defaultPawnKind,
                             faction: Faction.OfPlayer,
@@ -103,15 +106,15 @@ namespace Dangerchem.PawnReplace
 
             if (shouldconvert)
             {
-                Pawn convertedPawn = PawnGenerator.GeneratePawn(request);
+                convertedPawn = PawnGenerator.GeneratePawn(request);
                 if (convertedPawn.RaceProps.Humanlike)
                 {
                     if (modExt.backstory != null)
                     {
-                        Backstory tstory;
-                        string tstoryname = BackstoryDatabase.GetIdentifierClosestMatch(modExt.backstory);
-                        BackstoryDatabase.TryGetWithIdentifier(tstoryname, out tstory);
-                        convertedPawn.story.adulthood = tstory;// BackstoryDatabase.RandomBackstory(BackstorySlot.Adulthood);
+//                        Backstory tstory;
+//                        string tstoryname = BackstoryDatabase.GetIdentifierClosestMatch(modExt.backstory);
+//                        BackstoryDatabase.TryGetWithIdentifier(tstoryname, out tstory);
+//                        convertedPawn.story.adulthood = tstory;// BackstoryDatabase.RandomBackstory(BackstorySlot.Adulthood);
 
                     }
                 }
@@ -128,6 +131,11 @@ namespace Dangerchem.PawnReplace
 
 
                 //                GenPlace.TryPlaceThing(convertedPawn, pawn.Position, pawn.Map, ThingPlaceMode.Direct);
+                /*if (!PawnUtility.TrySpawnHatchedOrBornPawn(convertedPawn, pawn))
+                {
+                    Find.WorldPawns.PassToWorld(convertedPawn, RimWorld.Planet.PawnDiscardDecideMode.Discard);
+                }*/
+            
                 GenSpawn.Spawn(convertedPawn, pawn.Position, pawn.Map);
 
                 if (modExt.killPawn)
@@ -177,7 +185,8 @@ namespace Dangerchem.PawnReplace
             }
             else
             {
-                pawn.Destroy();
+                pawn.Destroy(DestroyMode.Vanish);
+                //pawn.Destroy();
             }
         }
     }

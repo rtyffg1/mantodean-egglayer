@@ -13,11 +13,19 @@ namespace AddSpawn
         public override void CompTick()
         {
             //            Log.Error("Spawning");
-            if (parent.Map != null)
+            CompHatcher ehatcher = this.parent.TryGetComp<CompHatcher>();
+            if (ehatcher == null)
+            {
+                Log.Error("Not foung hatcher to give faction");
+                return;
+            }
+            ehatcher.hatcheeFaction = Faction.OfPlayer;
+
+/*            if (parent.Map != null)
             {
                 this.SpawnEgg();
                 this.parent.Destroy();
-            }
+            }*/
         }
 
         /// <summary>

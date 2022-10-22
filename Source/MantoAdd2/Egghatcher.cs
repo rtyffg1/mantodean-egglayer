@@ -2,69 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-//using System.Threading.Tasks;
-using Verse;
+using System.Threading.Tasks;
 using RimWorld;
-
-namespace AddSpawn
+using Verse;
+using HarmonyLib;
+/*
+namespace CF
 {
-    public class EggHatcherComp : CompHatcher
+    public class HatcherExtension : DefModExtension
     {
-        public override void CompTick()
-        {
-            //            Log.Error("Spawning");
-            if (parent.Map != null)
-            {
-                this.SpawnEgg();
-                this.parent.Destroy();
-            }
-        }
-
-        /// <summary>
-        /// By default props returns the base CompProperties class.
-        /// You can get props and cast it everywhere you use it, 
-        /// or you create a Getter like this, which casts once and returns it.
-        /// Careful of case sensitivity!
-        /// </summary>
-        public EggSpawnCompProperties Props => (EggSpawnCompProperties)this.props;
-
-        public bool ExampleBool => Props.myExampleBool;
-
-        
-        public void SpawnEgg()
-        {
-            //            PawnGenerationRequest request = new PawnGenerationRequest(this.Props.Pawnkind, Faction.OfPlayer, PawnGenerationContext.NonPlayer);
-            //            Pawn pawn = PawnGenerator.GeneratePawn(request);
-            Thing ething = ThingMaker.MakeThing(this.Props.Eggdef);
-            CompHatcher ehatcher = ething.TryGetComp<CompHatcher>();
-            if (ehatcher == null)
-            {
-                Log.Error("Not foung hatcher to give faction");
-                return;
-            }
-            ehatcher.hatcheeFaction = Faction.OfPlayer;
-
-            GenSpawn.Spawn(ething, parent.Position, parent.Map);
-        }
+        public bool hatcheeForcePlayerFaction = false;
     }
 
-    public class EggHatcherCompProperties : CompProperties_Hatcher
+    /// <summary>
+    /// This patches the <c>Hatch</c> method so when no parent can be found (which is the case when a pawn is spawned from a crafted item), it is set so the player faction. 
+    /// </summary>
+//    [ClassWithPatches("ApplyHatchPatch")]
+    static class HatchPatch
     {
-        public bool myExampleBool;
-        public float myExampleFloat;
-        public ThingDef Eggdef;
-
-        /// <summary>
-        /// These constructors aren't strictly required if the compClass is set in the XML.
-        /// </summary>
-        public EggHatcherCompProperties()
+        [HarmonyPatch(typeof(CompHatcher))]
+        [HarmonyPatch("Hatch")]
+        class Hatch
         {
-            this.compClass = typeof(EggHatcherComp);
+            public static void Prefix(CompHatcher __instance)
+            {
+                // if (__instance.hatcheeParent == null) //If no parent is found for the hatchee, set the hatchee's faction to that of the player.
+                HatcherExtension ext = __instance.parent.def.GetModExtension<HatcherExtension>();
+                if (ext != null && ext.hatcheeForcePlayerFaction)
+                {
+                    // "parent" here refers to the Thing this CompHatcher is attached to, not the parent as described above.
+                    __instance.hatcheeFaction = Faction.OfPlayer;
+                }
+            }
         }
-
-/*        public EggHatcherCompProperties(Type compClass) : base(compClass)
-        {
-            this.compClass = compClass;
-        }*/
     }
 }
+*/

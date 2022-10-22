@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <!-- ====================================================== -->
+
+  <ThingDef ParentName="EggFertBase">
+    <defName>MantspawnpointM_Pre</defName>
+    <label>Mantodean spawnpre</label>
+    <description>A spawnpoint of a Mantodean.</description>
+    <graphicData>
+      <color>(150,200,100)</color>
+	  <drawSize>3</drawSize>
+    </graphicData>
+	<stackLimit>1</stackLimit>
+    <comps>
+      <li Class="AddSpawn.OwnPawnSpawnCompProperties">
+        <StartingAge>27</StartingAge>
+		<Pawnkind>Mantodean</Pawnkind>
+		<isfixedgender>true</isfixedgender>
+		<fixedgender>Male</fixedgender>
+		<backstory>MantodeanWarrior</backstory>
+		<StartingHediffs>
+		  <li>MutatedMarrowLight</li>
+		  <li>MutatedMarrowLight</li>
+		</StartingHediffs>
+		<HediffTargets>
+		  <li>Spine</li>
+		  <li>Ribcage</li>
+		  <li>Torso</li>
+		</HediffTargets>
+      </li>
+    </comps>
+  </ThingDef>
+    
+  <!-- ============================================================ -->
+
+  <ThingDef ParentName="EggFertBase">
+    <defName>MantspawnpointB_Pre</defName>
+    <label>Mantodean spawnpre</label>
+    <description>A spawnpoint of a Mantodean.</description>
+    <graphicData>
+      <color>(150,200,100)</color>
+	  <drawSize>3</drawSize>
+    </graphicData>
+	<stackLimit>1</stackLimit>
+    <comps>
+      <li Class="AddSpawn.OwnPawnSpawnCompProperties">
+		<Pawnkind>MantMegaspider</Pawnkind>
+		<isfixedgender>true</isfixedgender>
+		<fixedgender>None</fixedgender>
+		<StartingHediffs>
+		  <li>MutatedMarrowLight</li>
+		  <li>Hediff_Mantoregen</li>
+		</StartingHediffs>
+      </li>
+    </comps>
+  </ThingDef>
+    
+  <!-- ============================================================ -->
+  
+	
+</Defs>
