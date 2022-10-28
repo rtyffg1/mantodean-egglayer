@@ -66,35 +66,39 @@ namespace AddSpawn
                 }
             }
 
+//            Log.Error("starting spawn");
             GenSpawn.Spawn(pawn, parent.Position, parent.Map);
 
 //            Log.Error("starting hediffs");
-            for (int i = 0; i < Props.StartingHediffs.Count; i++)
+            if (Props.StartingHediffs != null)
             {
-//                Log.Error("hediff" + Props.StartingHediffs[i]);
-                BodyPartRecord CurrentTarget = null;
-                if (Props.HediffTargets != null)
-                    if (Props.HediffTargets.Count > i)
-                    {
-                        //                    CurrentTarget = Props.HediffTargets[i];
-//                        Log.Error(pawn.RaceProps.body.GetPartAtIndex(0).ToStringSafe());
-//                        Log.Error(pawn.RaceProps.body.GetPartAtIndex(1).ToStringSafe());
-                        CurrentTarget = pawn.RaceProps.body.GetPartsWithDef(Props.HediffTargets[i]).First();
-//                        Log.Error(CurrentTarget.ToStringSafe());
-                    }
-                if (Props.StartingHediffs[i] != null)
+                for (int i = 0; i < Props.StartingHediffs.Count; i++)
                 {
-//                    Log.Error(Props.StartingHediffs[i].ToStringSafe());
-                    if (CurrentTarget == null)
+//                    Log.Error("hediff" + Props.StartingHediffs[i]);
+                    BodyPartRecord CurrentTarget = null;
+                    if (Props.HediffTargets != null)
+                        if (Props.HediffTargets.Count > i)
+                        {
+                            //                    CurrentTarget = Props.HediffTargets[i];
+                            //                        Log.Error(pawn.RaceProps.body.GetPartAtIndex(0).ToStringSafe());
+                            //                        Log.Error(pawn.RaceProps.body.GetPartAtIndex(1).ToStringSafe());
+                            CurrentTarget = pawn.RaceProps.body.GetPartsWithDef(Props.HediffTargets[i]).First();
+                            //                        Log.Error(CurrentTarget.ToStringSafe());
+                        }
+                    if (Props.StartingHediffs[i] != null)
                     {
-//                        Log.Error("general hediff" + Props.StartingHediffs[i]);
-                        CurrentTarget = pawn.RaceProps.body.GetPartAtIndex(0);
-                        pawn.health.AddHediff(Props.StartingHediffs[i], CurrentTarget);
-                    }
-                    else
-                    {
-//                        Log.Error("local hediff" + Props.StartingHediffs[i]);
-                        pawn.health.AddHediff(Props.StartingHediffs[i], CurrentTarget);
+                        Log.Error(Props.StartingHediffs[i].ToStringSafe());
+                        if (CurrentTarget == null)
+                        {
+//                            Log.Error("general hediff" + Props.StartingHediffs[i]);
+                            CurrentTarget = pawn.RaceProps.body.GetPartAtIndex(0);
+                            pawn.health.AddHediff(Props.StartingHediffs[i], CurrentTarget);
+                        }
+                        else
+                        {
+//                            Log.Error("local hediff" + Props.StartingHediffs[i]);
+                            pawn.health.AddHediff(Props.StartingHediffs[i], CurrentTarget);
+                        }
                     }
                 }
             }

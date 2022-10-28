@@ -67,6 +67,7 @@ namespace Dangerchem.PawnReplace
                 request.FixedGender = modExt.fixedgender;
             }
 
+//            Log.Error("Checking race");
             if (!IsViableRace(pawn, modExt))
             {
                 if (modExt.animalifwrongrace)
@@ -104,6 +105,7 @@ namespace Dangerchem.PawnReplace
                 }
             }
 
+//            Log.Error("Checking convert");
             if (shouldconvert)
             {
                 convertedPawn = PawnGenerator.GeneratePawn(request);
@@ -141,29 +143,33 @@ namespace Dangerchem.PawnReplace
                 if (modExt.killPawn)
                     killpawn = true;
 //                Log.Error("starting hediffs");
-                for (int i = 0; i < modExt.StartingHediffs.Count; i++)
+                if (modExt.StartingHediffs != null)
                 {
-//                    Log.Error("hediff" + modExt.StartingHediffs[i]);
-                    BodyPartRecord CurrentTarget = null;
-                    if (modExt.HediffTargets != null)
-                        if (modExt.HediffTargets.Count > i)
-                        {
-                            CurrentTarget = convertedPawn.RaceProps.body.GetPartsWithDef(modExt.HediffTargets[i]).First();
-                        }
-                    if (modExt.StartingHediffs[i] != null)
+                    for (int i = 0; i < modExt.StartingHediffs.Count; i++)
                     {
-                        if (CurrentTarget == null)
+//                        Log.Error("hediff" + modExt.StartingHediffs[i]);
+                        BodyPartRecord CurrentTarget = null;
+                        if (modExt.HediffTargets != null)
+                            if (modExt.HediffTargets.Count > i)
+                            {
+                                CurrentTarget = convertedPawn.RaceProps.body.GetPartsWithDef(modExt.HediffTargets[i]).First();
+                            }
+                        if (modExt.StartingHediffs[i] != null)
                         {
-                            CurrentTarget = convertedPawn.RaceProps.body.GetPartAtIndex(0);
-                            convertedPawn.health.AddHediff(modExt.StartingHediffs[i], CurrentTarget);
-                        }
-                        else
-                        {
-                            convertedPawn.health.AddHediff(modExt.StartingHediffs[i], CurrentTarget);
+                            if (CurrentTarget == null)
+                            {
+                                CurrentTarget = convertedPawn.RaceProps.body.GetPartAtIndex(0);
+                                convertedPawn.health.AddHediff(modExt.StartingHediffs[i], CurrentTarget);
+                            }
+                            else
+                            {
+                                convertedPawn.health.AddHediff(modExt.StartingHediffs[i], CurrentTarget);
+                            }
                         }
                     }
                 }
             }
+//            Log.Error("Checking drop");
             if (modExt.forceDropEquipment)
             {
                 if(pawn.inventory != null)
