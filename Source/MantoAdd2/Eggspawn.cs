@@ -25,10 +25,10 @@ namespace AddSpawn
 //                Log.Error("Setting faction");
 //                ehatcher.hatcheeFaction = Faction.OfPlayer;
 
-                Log.Error("Spawning");
+//                Log.Error("Spawning");
                 this.SpawnEgg();
                 this.parent.Destroy();
-                Log.Error("Spawned");
+//                Log.Error("Spawned");
             }
         }
 

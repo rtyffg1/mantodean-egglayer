@@ -60,5 +60,6 @@ sysinfo.txt
 crashlytics-build.properties
 
 # assemblies
+Assemblies/
 Assemblies/*
 
