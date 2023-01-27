@@ -14,19 +14,29 @@ namespace AddSpawn
         {
             if (parent.Map != null)
             {
-//                Log.Error("hatcher get");
-//                CompHatcher ehatcher = this.parent.TryGetComp<CompHatcher>();
-//                Log.Error("Hatcher got");
-//                if (ehatcher == null)
-//                {
-//                    Log.Error("Not foung hatcher to give faction");
-//                    return;
-//                }
-//                Log.Error("Setting faction");
-//                ehatcher.hatcheeFaction = Faction.OfPlayer;
+                //                Log.Error("hatcher get");
+                //                CompHatcher ehatcher = this.parent.TryGetComp<CompHatcher>();
+                //                Log.Error("Hatcher got");
+                //                if (ehatcher == null)
+                //                {
+                //                    Log.Error("Not foung hatcher to give faction");
+                //                    return;
+                //                }
+                //                Log.Error("Setting faction");
+                //                ehatcher.hatcheeFaction = Faction.OfPlayer;
 
-//                Log.Error("Spawning");
-                this.SpawnEgg();
+                //                Log.Error("Spawning");
+                if (this.Props.Eggcount > 1)
+                {
+                    for (int i = 0; i < this.Props.Eggcount; i++)
+                    {
+                        this.SpawnEgg();
+                    }
+                }
+                else
+                {
+                    this.SpawnEgg();
+                }
                 this.parent.Destroy();
 //                Log.Error("Spawned");
             }
@@ -64,6 +74,7 @@ namespace AddSpawn
         public bool myExampleBool;
         public float myExampleFloat;
         public ThingDef Eggdef;
+        public int Eggcount = 1;
 
         /// <summary>
         /// These constructors aren't strictly required if the compClass is set in the XML.
