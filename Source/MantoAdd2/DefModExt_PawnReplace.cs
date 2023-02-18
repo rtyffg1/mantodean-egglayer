@@ -24,6 +24,7 @@ namespace Dangerchem.PawnReplace
         public bool isfixedgender = false;
         public Gender fixedgender = Gender.None;
         public float StartingAge = 0.5f;
+        public float AnimalStartingAge = 0.5f;
         public List<HediffDef> StartingHediffs = null;
         public List<BodyPartDef> HediffTargets = null;
         public string backstory = null;

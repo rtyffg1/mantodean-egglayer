@@ -62,6 +62,7 @@ namespace Dangerchem.PawnReplace
             request.CanGeneratePawnRelations = false;
             request.ColonistRelationChanceFactor = 0f;
             request.AllowAddictions = false;
+            request.AllowDowned = true;
             if (modExt.isfixedgender)
             {
                 request.FixedGender = modExt.fixedgender;
@@ -73,6 +74,7 @@ namespace Dangerchem.PawnReplace
                 if (modExt.animalifwrongrace)
                 {
                     request.KindDef = modExt.animalPawnKind;
+                    request.FixedBiologicalAge = modExt.AnimalStartingAge;
                 }
                 if (modExt.killifwrongrace)
                 {
@@ -108,7 +110,9 @@ namespace Dangerchem.PawnReplace
 //            Log.Error("Checking convert");
             if (shouldconvert)
             {
+//                Log.Error(request.ToString());
                 convertedPawn = PawnGenerator.GeneratePawn(request);
+//                Log.Error("Checking justgenerated");
                 if (convertedPawn.RaceProps.Humanlike)
                 {
                     if (modExt.backstory != null)
@@ -137,8 +141,10 @@ namespace Dangerchem.PawnReplace
                 {
                     Find.WorldPawns.PassToWorld(convertedPawn, RimWorld.Planet.PawnDiscardDecideMode.Discard);
                 }*/
-            
+
+//                Log.Error("Checking tospawn");
                 GenSpawn.Spawn(convertedPawn, pawn.Position, pawn.Map);
+//                Log.Error("Checking justspawned");
 
                 if (modExt.killPawn)
                     killpawn = true;

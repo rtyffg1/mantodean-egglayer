@@ -42,6 +42,7 @@ namespace AddSpawn
             {
                 request.FixedGender = Props.fixedgender;
             }
+            request.AllowDowned = true;
             Pawn pawn = PawnGenerator.GeneratePawn(request);
             if (!pawn.RaceProps.Humanlike)
             {
