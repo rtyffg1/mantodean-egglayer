@@ -58,6 +58,9 @@ namespace AddSpawn
             {
                 if (Props.backstory != null)
                 {
+//                      pawn.story.AllBackstories. .Find('corpse');
+//                      pawn.story.Childhood = pawn.story.AllBackstories.
+                    Log.Error("tstorys  " + pawn.story.AllBackstories.ToStringSafe());
 //                    BackstoryDef tstory;
 //                    string tstoryname = BackstoryDatabase.GetIdentifierClosestMatch(Props.backstory);
 //                    Log.Error("tstoryname  " + tstoryname.ToStringSafe());
